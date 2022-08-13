@@ -55,11 +55,11 @@ class Game extends React.Component {
 	}
 
 	rollbackTo(i) {
-		this.setState({
+		this.setState((state) => ({
 			currentStep: i,
 			isXNext: i % 2 === 0,
 			squareHistory: this.state.squareHistory.slice(0, i + 1),
-		});
+		}));
 	}
 
 	async handleClick(i, currentSquares) {
@@ -68,11 +68,11 @@ class Game extends React.Component {
 			return;
 		}
 		newSquares[i] = this.state.isXNext ? "X" : "O";
-		this.setState({
-			currentStep: this.state.squareHistory.length,
-			isXNext: !this.state.isXNext,
-			squareHistory: this.state.squareHistory.concat([newSquares]),
-		});
+		this.setState((state) => ({
+			currentStep: state.squareHistory.length,
+			isXNext: !state.isXNext,
+			squareHistory: state.squareHistory.concat([newSquares]),
+		}));
 	}
 
 	render() {
@@ -80,7 +80,7 @@ class Game extends React.Component {
 		const moveList = this.state.squareHistory.map((_, i) => {
 			return (
 				<li key={`btn-${i}`}>
-					<button class="border-2 border-black px-16" onClick={() => this.rollbackTo(i)}>
+					<button className="border-[1px] border-black px-16" onClick={() => this.rollbackTo(i)}>
 						{i ? `Go to move #${i}` : "Restart game"}
 					</button>
 				</li>

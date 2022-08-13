@@ -551,8 +551,8 @@ video {
   --tw-backdrop-sepia:  ;
 }
 
-.border-2 {
-  border-width: 2px;
+.border-\[1px\] {
+  border-width: 1px;
 }
 
 .border-black {
